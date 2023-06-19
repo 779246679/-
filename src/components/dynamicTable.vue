@@ -34,7 +34,7 @@
             v-for="item in selectHeaders"
             :column="item"
             :key="item.prop"
-            @tableClick="tableClick(scope.row, column)"
+            @tableClick="tableClick"
             :loading="loading"
           >
           </hb-table-column>
@@ -158,8 +158,8 @@ export default {
     sortChange(e) {
       this.$emit("sortChange", e);
     },
-    tableClick(row, column) {
-      this.$emit("tableClick", row, column);
+    tableClick(e, column) {
+      this.$emit("tableClick", e, column);
     },
   },
   computed: {

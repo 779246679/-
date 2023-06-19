@@ -108,8 +108,8 @@ export default {
       this.myHeader = e;
       console.log(e);
     },
-    tableClick(row, column) {
-      console.log(row, column);
+    tableClick(e, column) {
+      console.log(e, column);
     },
   },
 };
