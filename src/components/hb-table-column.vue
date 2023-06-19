@@ -19,6 +19,13 @@
         :column="el"
       ></hb-table-column>
     </template>
+    <template v-else-if="column.click" v-slot:default="scope">
+      <span
+        style="color: #409eff; cursor: pointer"
+        @click="tableClick(scope.row, column)"
+        >{{ scope.row[column.prop] }}</span
+      >
+    </template>
   </el-table-column>
 </template>
 
@@ -32,7 +39,10 @@ export default {
       },
     },
   },
+  methods: {
+    tableClick(row, column) {
+      this.$emit("tableClick", row, column);
+    },
+  },
 };
 </script>
-
-<style scoped></style>

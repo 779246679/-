@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <dynamicTable
-      @sortChange="sortChange"
       :tableHeaders="tableHeaders"
       :tableData="tableData"
+      @sortChange="handleSortChange"
+      @selectHeader="selectHeader"
+      @tableClick="tableClick"
+      :selectHeader="myHeader"
+      :loading="false"
     ></dynamicTable>
   </div>
 </template>
@@ -22,11 +26,13 @@ export default {
           label: "姓名",
           prop: "name",
           width: "180",
+          click: true,
           children: [],
         },
         {
           label: "年龄",
           prop: "age",
+          sortable: "custom",
           children: [],
         },
         {
@@ -73,7 +79,7 @@ export default {
         },
         {
           name: "小红",
-          age: 20,
+          age: 22,
           province: "北京",
           districts: "朝阳",
           streets: "北苑",
@@ -81,18 +87,29 @@ export default {
         },
         {
           name: "小",
-          age: 20,
+          age: 21,
           province: "北京",
           districts: "朝阳",
           streets: "北苑",
           zip: "10000",
         },
       ],
+      myHeader: [],
     };
   },
   methods: {
-    sortChange(e) {
+    handleSortChange({ column, prop, order }) {
+      console.log(column, prop, order);
+    },
+    handleCellClick(row, column, index) {
+      console.log(row, column, index);
+    },
+    selectHeader(e) {
+      this.myHeader = e;
       console.log(e);
+    },
+    tableClick(row, column) {
+      console.log(row, column);
     },
   },
 };

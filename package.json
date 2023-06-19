@@ -10,6 +10,8 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-ui": "^2.15.13",
+    "lik-mock-server": "^1.0.5",
+    "tools-lik": "^1.0.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"

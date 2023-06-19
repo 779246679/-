@@ -15,7 +15,9 @@
             <el-button type="primary" @click="reset">重置</el-button>
           </div>
         </div>
-        <el-button slot="reference" type="primary">展示指标管理</el-button>
+        <el-button slot="reference" type="primary" size="mini"
+          >展示指标管理</el-button
+        >
       </el-popover>
     </div>
     <div class="table-box">
@@ -24,7 +26,6 @@
         :data="tableData"
         :header-cell-style="{
           background: ' #ebf4ff',
-          borderBottom: '1px solid #3897ff',
           color: '#333333',
         }"
       >
@@ -33,7 +34,10 @@
             v-for="item in selectHeaders"
             :column="item"
             :key="item.prop"
-          ></hb-table-column>
+            @tableClick="tableClick(scope.row, column)"
+            :loading="loading"
+          >
+          </hb-table-column>
         </template>
       </el-table>
     </div>
@@ -58,6 +62,18 @@ export default {
       type: Array,
       default() {
         return [];
+      },
+    },
+    loading: {
+      type: Boolean || String,
+      default() {
+        return false;
+      },
+    },
+    myHeader: {
+      type: Array,
+      default() {
+        return this.tableHeaders;
       },
     },
   },
@@ -96,9 +112,11 @@ export default {
         this.type = true;
       });
       this.visiblePop = false;
+      this.$emit("selectHeader", this.selectHeaders);
     },
     reset() {
       this.selectHeaders = this.tableHeaders;
+      this.$emit("selectHeader", this.selectHeaders);
       this.visiblePop = false;
     },
     getCheckedTreeNodes(treeData, checkedKeys) {
@@ -140,6 +158,9 @@ export default {
     sortChange(e) {
       this.$emit("sortChange", e);
     },
+    tableClick(row, column) {
+      this.$emit("tableClick", row, column);
+    },
   },
   computed: {
     leafProps() {
@@ -156,6 +177,22 @@ export default {
   }
   .table-box {
     margin-top: 20px;
+  }
+  .el-table {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .el-table__header-wrapper {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .el-table__body-wrapper {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .el-table__row {
+    border-radius: 5px;
+    overflow: hidden;
   }
 }
 </style>
