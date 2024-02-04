@@ -8,9 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.12.4",
+    "@ffmpeg/ffmpeg": "^0.12.7",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.13",
     "lik-mock-server": "^1.0.5",
+    "pdfjs-dist": "^3.8.162",
     "tools-lik": "^1.0.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
